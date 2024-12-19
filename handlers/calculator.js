@@ -1,7 +1,5 @@
-module.exports = ({ body }, res) => {
-  console.log("JWT: ", req.jwt);
+module.exports = (params, res) => {
+  const [one, two] = params;
 
-  const [one, two] = body;
-  const result = Number(one.value) * Number(two.value);
-  res.status(200).json({ success: true, result });
+  res.status(200).json({ success: true, result: one.value * two.value });
 };

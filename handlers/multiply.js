@@ -1,4 +1,3 @@
-module.exports = ({ body }, res) => {
-  console.log("Multiply parameters: ", body);
+module.exports = (req, res) => {
   res.status(200).json({ success: true });
 };
