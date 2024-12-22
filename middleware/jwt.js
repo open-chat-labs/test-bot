@@ -10,17 +10,17 @@ const jwt = require("jsonwebtoken");
   thread_root_message_index: null,
   message_id: '495508592178159919',
   command_name: 'calculate',
-  parameters: '[{"kind":"number","name":"number_one","value":10},{"kind":"number","name":"number_two","value":20}]',
+  command_args: '[{"kind":"number","name":"number_one","value":10},{"kind":"number","name":"number_two","value":20}]',
   version: 0,
   command_text: '@julian_jelfs executed the command /calculate',
   bot_api_gateway: 'be2us-64aaa-aaaaa-qaabq-cai'
 }
 */
 
-const verifyJwt = (secret) => {
+const verifyJwt = (ocPublic) => {
   return (req, res, next) => {
-    const token = req.headers["x-auth-jwt"];
-    const publicKey = secret.replace(/\\n/g, "\n");
+    const token = req.body;
+    const publicKey = ocPublic.replace(/\\n/g, "\n");
 
     if (!token) {
       return res
@@ -30,6 +30,7 @@ const verifyJwt = (secret) => {
 
     try {
       req.jwt = jwt.verify(token, publicKey, { algorithms: ["ES256"] });
+      req.originalJwt = token;
       console.log("Verified jwt: ", req.jwt);
       next();
     } catch (err) {

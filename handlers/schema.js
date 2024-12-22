@@ -34,8 +34,8 @@ module.exports = (_, res) => {
             placeholder: "First number",
             param_type: {
               NumberParam: {
-                min_length: 0,
-                max_length: 10000,
+                min_value: 0,
+                max_value: 10000,
                 choices: [],
               },
             },
@@ -47,8 +47,8 @@ module.exports = (_, res) => {
             placeholder: "Second number",
             param_type: {
               NumberParam: {
-                min_length: 0,
-                max_length: 10000,
+                min_value: 0,
+                max_value: 10000,
                 choices: [],
               },
             },
@@ -71,8 +71,8 @@ module.exports = (_, res) => {
             placeholder: "Enter prompt",
             param_type: {
               NumberParam: {
-                min_length: 0,
-                max_length: 1000,
+                min_value: 0,
+                max_value: 1000,
                 choices: [],
               },
             },
@@ -91,8 +91,8 @@ module.exports = (_, res) => {
             placeholder: "Select number",
             param_type: {
               NumberParam: {
-                min_length: 0,
-                max_length: 100,
+                min_value: 0,
+                max_value: 100,
                 choices: [
                   { name: "One", value: 1 },
                   { name: "Ten", value: 10 },

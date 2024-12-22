@@ -5,15 +5,15 @@ const multiply = require("./multiply");
 const chat = require("./chat");
 
 module.exports = (req, res) => {
-  const { command_name, parameters } = req.jwt;
+  const { command_name, command_args } = req.jwt;
 
   console.log("Command: ", command_name);
-  console.log("Parameters: ", parameters);
+  console.log("Parameters: ", command_args);
 
   // let's assume that the jwt has a commandName field
   switch (command_name) {
     case "calculate":
-      return calculator(JSON.parse(parameters), res);
+      return calculator(req, res);
     case "ban":
       return ban(req, res);
     case "weather":
