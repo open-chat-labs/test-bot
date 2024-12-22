@@ -9,16 +9,71 @@ module.exports = (_, res) => {
     description: "This is my lovely bot and it is valid",
     commands: [
       {
-        name: "ban",
-        description: "ban a person from this chat",
-        permissions: emptyPermissions,
+        name: "artist",
+        description: "Search for an artist on Spotify",
+        permissions: {
+          ...emptyPermissions,
+          message: ["Text"],
+        },
         params: [
           {
-            name: "username",
+            name: "artist",
             required: true,
-            description: "Please enter the user that you would like to ban.",
-            placeholder: "User to ban",
-            param_type: "UserParam",
+            description: "The artist to search for",
+            placeholder: "Enter artist name",
+            param_type: {
+              StringParam: {
+                min_length: 1,
+                max_length: 100,
+                choices: [],
+              },
+            },
+          },
+        ],
+      },
+      {
+        name: "song",
+        description: "Search for a song on Spotify",
+        permissions: {
+          ...emptyPermissions,
+          message: ["Text"],
+        },
+        params: [
+          {
+            name: "song",
+            required: true,
+            description: "The song to search for",
+            placeholder: "Enter song name",
+            param_type: {
+              StringParam: {
+                min_length: 1,
+                max_length: 100,
+                choices: [],
+              },
+            },
+          },
+        ],
+      },
+      {
+        name: "album",
+        description: "Search for an album on Spotify",
+        permissions: {
+          ...emptyPermissions,
+          message: ["Text"],
+        },
+        params: [
+          {
+            name: "album",
+            required: true,
+            description: "The album to search for",
+            placeholder: "Enter album name",
+            param_type: {
+              StringParam: {
+                min_length: 1,
+                max_length: 100,
+                choices: [],
+              },
+            },
           },
         ],
       },
@@ -74,31 +129,6 @@ module.exports = (_, res) => {
                 min_value: 0,
                 max_value: 1000,
                 choices: [],
-              },
-            },
-          },
-        ],
-      },
-      {
-        name: "multiply",
-        description: "Multiply some number I pick",
-        permissions: emptyPermissions,
-        params: [
-          {
-            name: "number",
-            required: true,
-            description: "Please select a number from the list",
-            placeholder: "Select number",
-            param_type: {
-              NumberParam: {
-                min_value: 0,
-                max_value: 100,
-                choices: [
-                  { name: "One", value: 1 },
-                  { name: "Ten", value: 10 },
-                  { name: "Twenty", value: 20 },
-                  { name: "Forty five", value: 45 },
-                ],
               },
             },
           },
