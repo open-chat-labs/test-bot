@@ -1,18 +1,18 @@
 const { getSpotifyAccessToken, searchSpotifyArtists } = require("./spotify");
-
-function placeholderMessage(client, jwt) {
-  client.sendTextMessage("Searching Spotify ...", jwt, false);
-}
+const { placeholderResponse, placeholderMessage } = require("./placeholder");
 
 module.exports = async (req, res) => {
   const client = req.botClient;
   const { command_args } = req.jwt;
   const [artistParam] = JSON.parse(command_args);
   const artist = artistParam.value;
+  const placeholder = "Searching Spotify ...";
 
-  res.status(200).json({ success: true });
+  placeholderMessage(placeholder, client, req.originalJwt);
 
-  placeholderMessage(client, req.originalJwt);
+  res.status(200).json({
+    Success: placeholderResponse(placeholder, req.jwt),
+  });
 
   const token = await getSpotifyAccessToken();
   const item = await searchSpotifyArtists(token, artist);
