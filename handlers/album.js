@@ -10,9 +10,7 @@ module.exports = async (req, res) => {
 
   placeholderMessage(placeholder, client, req.originalJwt);
 
-  res.status(200).json({
-    Success: placeholderResponse(placeholder, req.jwt),
-  });
+  res.status(200).json(placeholderResponse(placeholder, req.jwt));
 
   const token = await getSpotifyAccessToken();
   const item = await searchSpotifyAlbums(token, album);
