@@ -6,7 +6,8 @@ const emptyPermissions = {
 
 module.exports = (_, res) => {
   res.status(200).json({
-    description: "This is my lovely bot and it is valid",
+    description:
+      "This is a demonstration bot which runs various commands against the Spotify API.",
     commands: [
       {
         name: "artist",
