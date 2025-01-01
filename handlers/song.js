@@ -16,5 +16,5 @@ module.exports = async (req, res) => {
   const item = await searchSpotifySongs(token, song);
   const url = item.external_urls.spotify;
 
-  client.sendTextMessage(url, req.originalJwt, true);
+  client.sendTextMessage(req.originalJwt, true, url);
 };

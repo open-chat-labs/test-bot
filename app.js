@@ -10,6 +10,7 @@ const app = express();
 const OC_PUBLIC = process.env.OC_PUBLIC;
 const IDENTITY_PRIVATE = process.env.IDENTITY_PRIVATE;
 const IC_HOST = process.env.IC_HOST;
+const STORAGE_INDEX_CANISTER = process.env.STORAGE_INDEX_CANISTER;
 
 function createIdentity(privateKey) {
   const privateKeyPem = privateKey.replace(/\\n/g, "\n");
@@ -29,7 +30,7 @@ app.use(express.text());
 app.post(
   "/execute_command",
   verifyJwt(OC_PUBLIC),
-  createBotClient(IDENTITY_PRIVATE, IC_HOST),
+  createBotClient(IDENTITY_PRIVATE, IC_HOST, STORAGE_INDEX_CANISTER),
   executeCommand
 );
 app.get("/", schema);

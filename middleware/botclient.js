@@ -1,6 +1,6 @@
 const { BotClient } = require("@open-ic/openchat-botclient");
 
-const createBotClient = (privateKey, icHost) => {
+const createBotClient = (privateKey, icHost, storageIndexCanister) => {
   return (req, res, next) => {
     if (!req.jwt) {
       console.log("unable to determine bot client canisterId");
@@ -8,7 +8,13 @@ const createBotClient = (privateKey, icHost) => {
     } else {
       try {
         const { bot_api_gateway } = req.jwt;
-        req.botClient = new BotClient(privateKey, bot_api_gateway, icHost);
+        const config = {
+          botGatewayCanisterId: bot_api_gateway,
+          openStorageCanisterId: storageIndexCanister,
+          icHost,
+          identityPrivateKey: privateKey,
+        };
+        req.botClient = new BotClient(config);
         console.log("Bot client created");
         next();
       } catch (err) {

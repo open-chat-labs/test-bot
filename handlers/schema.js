@@ -10,6 +10,15 @@ module.exports = (_, res) => {
       "This is a demonstration bot which runs various commands against the Spotify API.",
     commands: [
       {
+        name: "image",
+        description: "Post an image message",
+        permissions: {
+          ...emptyPermissions,
+          message: ["Image"],
+        },
+        params: [],
+      },
+      {
         name: "artist",
         description: "Search for an artist on Spotify",
         permissions: {

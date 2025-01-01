@@ -1,6 +1,7 @@
 const artist = require("./artist");
 const album = require("./album");
 const song = require("./song");
+const image = require("./image");
 
 module.exports = (req, res) => {
   const { command_name, command_args } = req.jwt;
@@ -10,6 +11,8 @@ module.exports = (req, res) => {
 
   // let's assume that the jwt has a commandName field
   switch (command_name) {
+    case "image":
+      return image(req, res);
     case "song":
       return song(req, res);
     case "artist":

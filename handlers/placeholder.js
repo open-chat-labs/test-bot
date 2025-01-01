@@ -1,7 +1,7 @@
 const { success } = require("./success");
 
 function placeholderMessage(txt, client, jwt) {
-  return client.sendTextMessage(txt, jwt, false);
+  return client.sendTextMessage(jwt, false, txt);
 }
 
 function placeholderResponse(text, jwt) {
