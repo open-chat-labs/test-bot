@@ -7,12 +7,13 @@ const createBotClient = (privateKey, icHost, storageIndexCanister) => {
       next();
     } else {
       try {
-        const { bot_api_gateway } = req.jwt;
+        const { bot_api_gateway, chat } = req.jwt;
         const config = {
           botGatewayCanisterId: bot_api_gateway,
           openStorageCanisterId: storageIndexCanister,
           icHost,
           identityPrivateKey: privateKey,
+          chatId: chat,
         };
         req.botClient = new BotClient(config);
         console.log("Bot client created");

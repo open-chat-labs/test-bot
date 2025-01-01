@@ -34,13 +34,6 @@ async function processImage(filePath) {
   }
 }
 
-function extractUploadCanisterId(jwt) {
-  if ("Group" in jwt.chat) {
-    return jwt.chat.Group;
-  }
-  return "";
-}
-
 module.exports = async (req, res) => {
   const client = req.botClient;
   const placeholder = "Uploading image ...";
@@ -57,7 +50,6 @@ module.exports = async (req, res) => {
   client.sendImageMessage(
     req.originalJwt,
     true,
-    extractUploadCanisterId(req.jwt),
     uint8Array,
     `image/${format}`,
     width,
