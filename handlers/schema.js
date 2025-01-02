@@ -19,6 +19,15 @@ module.exports = (_, res) => {
         params: [],
       },
       {
+        name: "file",
+        description: "Post a file message",
+        permissions: {
+          ...emptyPermissions,
+          message: ["File"],
+        },
+        params: [],
+      },
+      {
         name: "artist",
         description: "Search for an artist on Spotify",
         permissions: {
